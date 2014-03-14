@@ -75,7 +75,7 @@ module EeePub
       @ncx_file ||= 'toc.ncx'
       @opf_file ||= 'content.opf'
 
-      instance_eval(&block) if block_given?
+      block.arity < 1 ? instance_eval(&block) : block.call(self) if block_given?
     end
 
     # Save as ePub file
